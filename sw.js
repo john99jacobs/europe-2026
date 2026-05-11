@@ -1,4 +1,4 @@
-const CACHE = 'europe-2026-v3';
+const CACHE = 'europe-2026-v4';
 const ASSETS = [
   '/europe-2026/',
   '/europe-2026/index.html',
@@ -31,8 +31,8 @@ self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
   const url = new URL(event.request.url);
 
-  // Weather API: network-only, fail silently
-  if (url.hostname === 'api.open-meteo.com') {
+  // External APIs: network-only, fail silently
+  if (url.hostname === 'api.open-meteo.com' || url.hostname.endsWith('.amazonaws.com')) {
     event.respondWith(fetch(event.request).catch(() => new Response('', { status: 503 })));
     return;
   }

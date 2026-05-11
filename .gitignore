@@ -10,3 +10,4 @@ infra/terraform.tfvars
 infra/terraform.tfstate
 infra/terraform.tfstate.backup
 infra/lambda.zip
+infra/terraform.tfstate*.backup

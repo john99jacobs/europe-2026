@@ -1,4 +1,4 @@
-const FLIGHT_STATUS_URL = 'https://vgr57xpoci72po77y4fw6d5dsm0lpaxh.lambda-url.eu-central-1.on.aws/';
+const FLIGHT_STATUS_URL = 'https://3qaxsli3bb.execute-api.eu-central-1.amazonaws.com/';
 
 function extractFlightIata(detail) {
   if (!detail) return null;

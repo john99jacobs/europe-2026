@@ -78,15 +78,43 @@ resource "aws_lambda_function" "flight_status" {
   ]
 }
 
-# ── Function URL (no API Gateway needed) ─────────────────────────────────────
+resource "aws_lambda_permission" "allow_api_gateway" {
+  statement_id  = "AllowAPIGatewayInvoke"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.flight_status.function_name
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "${aws_apigatewayv2_api.flight_status.execution_arn}/*/*"
+}
 
-resource "aws_lambda_function_url" "flight_status" {
-  function_name      = aws_lambda_function.flight_status.function_name
-  authorization_type = "NONE"
+# ── API Gateway HTTP API ──────────────────────────────────────────────────────
 
-  cors {
+resource "aws_apigatewayv2_api" "flight_status" {
+  name          = "europe-2026-flight-status"
+  protocol_type = "HTTP"
+
+  cors_configuration {
     allow_origins = [var.cors_origin]
     allow_methods = ["GET"]
+    allow_headers = ["content-type"]
     max_age       = 300
   }
+}
+
+resource "aws_apigatewayv2_integration" "flight_status" {
+  api_id                 = aws_apigatewayv2_api.flight_status.id
+  integration_type       = "AWS_PROXY"
+  integration_uri        = aws_lambda_function.flight_status.invoke_arn
+  payload_format_version = "2.0"
+}
+
+resource "aws_apigatewayv2_route" "flight_status" {
+  api_id    = aws_apigatewayv2_api.flight_status.id
+  route_key = "GET /"
+  target    = "integrations/${aws_apigatewayv2_integration.flight_status.id}"
+}
+
+resource "aws_apigatewayv2_stage" "flight_status" {
+  api_id      = aws_apigatewayv2_api.flight_status.id
+  name        = "$default"
+  auto_deploy = true
 }
