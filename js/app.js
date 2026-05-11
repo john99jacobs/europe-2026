@@ -276,6 +276,13 @@ window.addEventListener('load', init);
   ptr.appendChild(spinner);
   document.body.prepend(ptr);
 
+  function positionPtr() {
+    const header = document.querySelector('.site-header');
+    ptr.style.top = (header ? header.offsetHeight : 0) + 'px';
+  }
+  positionPtr();
+  window.addEventListener('resize', positionPtr);
+
   let startY = 0;
   let lastY  = 0;
   let armed  = false;
