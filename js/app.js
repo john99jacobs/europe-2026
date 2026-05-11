@@ -1,4 +1,5 @@
 let tripData = null;
+let itineraryRendered = false;
 
 const EVENT_LABELS = {
   flight:           'Flight',
@@ -44,10 +45,9 @@ function todayStr() {
 
 function renderBadge(type, unbooked) {
   const label = EVENT_LABELS[type] || type;
-  if (unbooked) {
-    return `<span class="badge badge--unbooked">Not booked</span>`;
-  }
-  return `<span class="badge badge--${type}">${label}</span>`;
+  const typeBadge = `<span class="badge badge--${type}">${label}</span>`;
+  const unbookedBadge = unbooked ? `<span class="badge badge--unbooked">Not booked</span>` : '';
+  return typeBadge + unbookedBadge;
 }
 
 function renderMapLink(address, mapsQuery) {
@@ -165,13 +165,19 @@ function renderTripComplete() {
 }
 
 function renderItineraryView() {
-  const html = tripData.days.map((day, i) => {
+  if (itineraryRendered) return;
+  itineraryRendered = true;
+
+  const today = todayStr();
+  const html = tripData.days.map((day) => {
+    const isToday = day.date === today;
     const eventsHtml = day.events.map(renderEvent).join('');
     const lodgingHtml = renderLodging(day.lodging);
+    const todayChip = isToday ? `<span class="itinerary-today-chip">Today</span>` : '';
     return `
-      <div class="itinerary-day">
+      <div class="itinerary-day${isToday ? ' itinerary-day--today' : ''}" id="day-${day.date}">
         <div class="itinerary-day-header">
-          <span class="itinerary-date">${formatDateShort(day.date)}</span>
+          <span class="itinerary-date">${formatDateShort(day.date)}${todayChip}</span>
           <span class="itinerary-day-title">${day.label}</span>
           <span class="itinerary-city">${day.city}</span>
         </div>
@@ -181,6 +187,12 @@ function renderItineraryView() {
   }).join('');
 
   document.getElementById('view-itinerary').innerHTML = html;
+
+  // Scroll to today on first render if we're in the trip window
+  if (today >= tripData.trip.start_date && today <= tripData.trip.end_date) {
+    const el = document.getElementById(`day-${today}`);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 }
 
 function route() {

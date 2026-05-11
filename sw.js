@@ -30,13 +30,27 @@ self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
   const url = new URL(event.request.url);
 
-  // Weather API: network-first, fall through silently on failure
+  // Weather API: network-only, fail silently
   if (url.hostname === 'api.open-meteo.com') {
     event.respondWith(fetch(event.request).catch(() => new Response('', { status: 503 })));
     return;
   }
 
-  // Everything else: cache-first
+  // trip.json: network-first so updates reach users immediately; cache is offline fallback
+  if (url.pathname.endsWith('trip.json')) {
+    event.respondWith(
+      fetch(event.request)
+        .then(res => {
+          const clone = res.clone();
+          caches.open(CACHE).then(cache => cache.put(event.request, clone));
+          return res;
+        })
+        .catch(() => caches.match(event.request))
+    );
+    return;
+  }
+
+  // App shell: cache-first
   event.respondWith(
     caches.match(event.request).then(cached => cached || fetch(event.request))
   );

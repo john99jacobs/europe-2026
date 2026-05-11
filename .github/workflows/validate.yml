@@ -15,6 +15,6 @@ jobs:
         with:
           node-version: '20'
       - name: Install ajv-cli
-        run: npm install -g ajv-cli@5
+        run: npm install -g ajv-cli@4
       - name: Validate trip.json against schema
-        run: ajv validate -s trip.schema.json -d trip.json --spec=draft7
+        run: ajv validate -s trip.schema.json -d trip.json
