@@ -59,10 +59,10 @@
           "note": null
         },
         {
-          "type": "flight",
-          "time": "23:40",
-          "label": "Arrive Oslo Gardermoen (OSL)",
-          "detail": "AA 7067 (operated by British Airways) from London Heathrow",
+          "type": "note",
+          "time": null,
+          "label": "Note about train service",
+          "detail": "Flytoget Airport Express train runs until midnight, Vy regional train runs a bit later, if neither are running use Bolt or Uber",
           "address": null,
           "maps_query": null,
           "booked": true,
