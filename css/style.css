@@ -40,7 +40,33 @@ body {
   color: var(--color-text-primary);
   line-height: 1.5;
   min-height: 100vh;
+  overscroll-behavior-y: contain;
 }
+
+/* ── Pull-to-refresh ── */
+#ptr {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-background);
+  overflow: hidden;
+  z-index: 200;
+}
+#ptr-spinner {
+  width: 22px;
+  height: 22px;
+  border: 2.5px solid var(--color-accent);
+  border-top-color: transparent;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+#ptr.ptr-ready #ptr-spinner  { opacity: 1; }
+#ptr.ptr-loading #ptr-spinner { opacity: 1; animation: ptr-spin 0.7s linear infinite; }
+@keyframes ptr-spin { to { transform: rotate(360deg); } }
 a { color: var(--color-primary); text-decoration: none; }
 a:hover { text-decoration: underline; }
 

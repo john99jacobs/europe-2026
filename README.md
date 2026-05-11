@@ -31,7 +31,7 @@ Plain HTML, CSS, and JavaScript. No framework, no build step. Hosted on GitHub P
 
 The icon appears on your home screen. The app opens full-screen, and the full itinerary is available offline after the first load.
 
-> **After a trip data update:** force-quit the app (swipe up in App Switcher) and reopen. This ensures the service worker fetches the latest `trip.json` rather than serving a cached copy.
+> **After a trip data update:** pull down from the top of the screen to refresh. The spinner appears and the app reloads with the latest data.
 
 ## Updating trip data
 

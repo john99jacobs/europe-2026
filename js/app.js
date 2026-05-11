@@ -263,3 +263,54 @@ async function init() {
 
 window.addEventListener('hashchange', route);
 window.addEventListener('load', init);
+
+// ── Pull-to-refresh ────────────────────────────────────────────────────────
+(function () {
+  const THRESHOLD = 72;  // px of pull needed to trigger
+  const FULL_H    = 56;  // px height of indicator at threshold
+
+  const ptr = document.createElement('div');
+  ptr.id = 'ptr';
+  const spinner = document.createElement('div');
+  spinner.id = 'ptr-spinner';
+  ptr.appendChild(spinner);
+  document.body.prepend(ptr);
+
+  let startY = 0;
+  let lastY  = 0;
+  let armed  = false;
+
+  document.addEventListener('touchstart', e => {
+    if (window.scrollY !== 0) return;
+    startY = lastY = e.touches[0].clientY;
+    armed  = true;
+    ptr.classList.remove('ptr-ready', 'ptr-loading');
+    ptr.style.transition = '';
+  }, { passive: true });
+
+  document.addEventListener('touchmove', e => {
+    if (!armed) return;
+    lastY   = e.touches[0].clientY;
+    const dy = Math.max(0, lastY - startY);
+    // Rubber-band: full resistance past threshold
+    const h = dy < THRESHOLD ? (dy / THRESHOLD) * FULL_H
+                              : FULL_H + (dy - THRESHOLD) * 0.15;
+    ptr.style.height = Math.min(h, FULL_H * 1.4) + 'px';
+    ptr.classList.toggle('ptr-ready', dy >= THRESHOLD);
+  }, { passive: true });
+
+  document.addEventListener('touchend', () => {
+    if (!armed) return;
+    armed = false;
+    const triggered = lastY - startY >= THRESHOLD;
+    ptr.style.transition = 'height 0.22s ease';
+    if (triggered) {
+      ptr.style.height = FULL_H + 'px';
+      ptr.classList.add('ptr-loading');
+      setTimeout(() => location.reload(), 350);
+    } else {
+      ptr.style.height = '0';
+      ptr.classList.remove('ptr-ready');
+    }
+  });
+}());
