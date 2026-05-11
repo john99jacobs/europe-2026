@@ -1,5 +1,6 @@
 let tripData = null;
 let itineraryRendered = false;
+let savedItineraryScroll = 0;
 
 const EVENT_LABELS = {
   flight:           'Flight',
@@ -36,6 +37,8 @@ function formatDateShort(dateStr) {
 }
 
 function todayStr() {
+  const param = new URLSearchParams(window.location.search).get('date');
+  if (param && /^\d{4}-\d{2}-\d{2}$/.test(param)) return param;
   const now = new Date();
   const y = now.getFullYear();
   const m = String(now.getMonth() + 1).padStart(2, '0');
@@ -200,8 +203,16 @@ function route() {
   const isToday = hash === '#today' || hash === '';
   const isItinerary = hash === '#itinerary';
 
-  document.getElementById('view-today').classList.toggle('hidden', !isToday);
-  document.getElementById('view-itinerary').classList.toggle('hidden', !isItinerary);
+  const todayView = document.getElementById('view-today');
+  const itineraryView = document.getElementById('view-itinerary');
+
+  // Save itinerary scroll position before hiding it
+  if (!itineraryView.classList.contains('hidden') && !isItinerary) {
+    savedItineraryScroll = window.scrollY;
+  }
+
+  todayView.classList.toggle('hidden', !isToday);
+  itineraryView.classList.toggle('hidden', !isItinerary);
   document.getElementById('tab-today').classList.toggle('active', isToday);
   document.getElementById('tab-itinerary').classList.toggle('active', isItinerary);
 
@@ -226,6 +237,8 @@ function route() {
     }
   } else if (isItinerary) {
     renderItineraryView();
+    // Restore scroll position after layout is updated
+    requestAnimationFrame(() => window.scrollTo(0, savedItineraryScroll));
   }
 }
 
