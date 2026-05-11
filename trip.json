@@ -1,0 +1,532 @@
+{
+  "trip": {
+    "name": "Jacobs Family Europe 2026",
+    "travelers": ["John", "Stefanie", "Justin", "Elizabeth"],
+    "start_date": "2026-05-31",
+    "end_date": "2026-06-14"
+  },
+  "days": [
+    {
+      "date": "2026-05-31",
+      "label": "Depart Dallas",
+      "city": "Dallas → London",
+      "lat": 32.7767,
+      "lng": -96.7970,
+      "lodging": null,
+      "events": [
+        {
+          "type": "flight",
+          "time": "22:59",
+          "label": "Flight: DFW → London Heathrow",
+          "detail": "American Airlines AA 78 | Economy | Seats 33D, 33E, 33G, 33H",
+          "address": null,
+          "maps_query": null,
+          "booked": true,
+          "note": null
+        }
+      ]
+    },
+    {
+      "date": "2026-06-01",
+      "label": "Transit: London → Oslo",
+      "city": "London → Oslo",
+      "lat": 51.5074,
+      "lng": -0.1278,
+      "lodging": {
+        "name": "Dinbnb Apartments Grunerlokka — Penthouse Dream",
+        "address": null,
+        "maps_query": "Dinbnb Apartments Grunerlokka Oslo"
+      },
+      "events": [
+        {
+          "type": "flight",
+          "time": "14:25",
+          "label": "Arrive London Heathrow (LHR)",
+          "detail": "American Airlines AA 78 from Dallas",
+          "address": null,
+          "maps_query": null,
+          "booked": true,
+          "note": null
+        },
+        {
+          "type": "flight",
+          "time": "20:30",
+          "label": "Flight: London Heathrow → Oslo",
+          "detail": "AA 7067 (operated by British Airways) | Economy | Seats 11C, 11D, 11E, 11F",
+          "address": null,
+          "maps_query": null,
+          "booked": true,
+          "note": null
+        },
+        {
+          "type": "lodging-checkin",
+          "time": "23:40",
+          "label": "Arrive Oslo (OSL) — Check in",
+          "detail": "Dinbnb Apartments Grunerlokka — Penthouse Dream",
+          "address": null,
+          "maps_query": "Dinbnb Apartments Grunerlokka Oslo",
+          "booked": true,
+          "note": "Address provided by host in Vrbo app"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-02",
+      "label": "Oslo — Free Day",
+      "city": "Oslo",
+      "lat": 59.9139,
+      "lng": 10.7522,
+      "lodging": {
+        "name": "Dinbnb Apartments Grunerlokka — Penthouse Dream",
+        "address": null,
+        "maps_query": "Dinbnb Apartments Grunerlokka Oslo"
+      },
+      "events": [
+        {
+          "type": "note",
+          "time": null,
+          "label": "Free day — explore Oslo",
+          "detail": null,
+          "address": null,
+          "maps_query": null,
+          "booked": true,
+          "note": null
+        }
+      ]
+    },
+    {
+      "date": "2026-06-03",
+      "label": "Norway in a Nutshell — Day 1",
+      "city": "Oslo → Flåm",
+      "lat": 59.9139,
+      "lng": 10.7522,
+      "lodging": {
+        "name": "Flåm Camping & Hostel",
+        "address": "Nedre Brekkevegen 12, 5743 Flåm",
+        "maps_query": null
+      },
+      "events": [
+        {
+          "type": "transfer",
+          "time": "05:30",
+          "label": "Transfer to Oslo Central Station",
+          "detail": "Arranged ground transfer",
+          "address": null,
+          "maps_query": "Oslo Central Station",
+          "booked": true,
+          "note": null
+        },
+        {
+          "type": "train",
+          "time": "06:25",
+          "label": "Train: Oslo → Voss",
+          "detail": "Bergen Railway (Vy) | Car 4, Seats 31, 32, 35, 36",
+          "address": null,
+          "maps_query": null,
+          "booked": true,
+          "note": null
+        },
+        {
+          "type": "bus",
+          "time": "13:05",
+          "label": "Bus: Voss → Gudvangen",
+          "detail": "Platform B outside Voss railway station — look for Norway in a Nutshell sign",
+          "address": null,
+          "maps_query": null,
+          "booked": true,
+          "note": null
+        },
+        {
+          "type": "boat",
+          "time": "14:30",
+          "label": "Nærøyfjord Cruise: Gudvangen → Flåm",
+          "detail": "Electric fjord cruise through UNESCO-listed Nærøyfjord",
+          "address": null,
+          "maps_query": "Gudvangen ferry dock",
+          "booked": true,
+          "note": "Dock is 50 meters from the bus stop"
+        },
+        {
+          "type": "activity",
+          "time": "18:30",
+          "label": "Local Food & Concert at Flåm Fjord Farm",
+          "detail": null,
+          "address": null,
+          "maps_query": "Flåm Fjord Farm",
+          "booked": true,
+          "note": null
+        },
+        {
+          "type": "lodging-checkin",
+          "time": "21:00",
+          "label": "Check in: Flåm Camping & Hostel",
+          "detail": "4-bed room included in Norway in a Nutshell package",
+          "address": "Nedre Brekkevegen 12, 5743 Flåm",
+          "maps_query": null,
+          "booked": true,
+          "note": null
+        }
+      ]
+    },
+    {
+      "date": "2026-06-04",
+      "label": "Norway in a Nutshell — Day 2",
+      "city": "Flåm → Bergen",
+      "lat": 60.8629,
+      "lng": 7.1159,
+      "lodging": {
+        "name": "Barfot Apartments",
+        "address": "37 Magnus Barfots gate, Bergen, 5015 Norway",
+        "maps_query": null
+      },
+      "events": [
+        {
+          "type": "train",
+          "time": "12:10",
+          "label": "Flåmsbana Railway: Flåm → Myrdal",
+          "detail": "Includes photo stop at Kjosfossen waterfall",
+          "address": null,
+          "maps_query": null,
+          "booked": true,
+          "note": null
+        },
+        {
+          "type": "train",
+          "time": "13:13",
+          "label": "Bergen Railway: Myrdal → Bergen",
+          "detail": "Vy | Car 5, Seats 210, 211, 214, 215",
+          "address": null,
+          "maps_query": null,
+          "booked": true,
+          "note": null
+        },
+        {
+          "type": "lodging-checkin",
+          "time": "15:24",
+          "label": "Arrive Bergen — Check in: Barfot Apartments",
+          "detail": "Check-in after 3:00 PM",
+          "address": "37 Magnus Barfots gate, Bergen, 5015 Norway",
+          "maps_query": null,
+          "booked": true,
+          "note": null
+        }
+      ]
+    },
+    {
+      "date": "2026-06-05",
+      "label": "Bergen — Free Day",
+      "city": "Bergen",
+      "lat": 60.3913,
+      "lng": 5.3221,
+      "lodging": {
+        "name": "Barfot Apartments",
+        "address": "37 Magnus Barfots gate, Bergen, 5015 Norway",
+        "maps_query": null
+      },
+      "events": [
+        {
+          "type": "note",
+          "time": null,
+          "label": "Free day — explore Bergen",
+          "detail": null,
+          "address": null,
+          "maps_query": null,
+          "booked": true,
+          "note": null
+        }
+      ]
+    },
+    {
+      "date": "2026-06-06",
+      "label": "Bergen → Amsterdam",
+      "city": "Bergen → Amsterdam",
+      "lat": 60.3913,
+      "lng": 5.3221,
+      "lodging": {
+        "name": "Linden Hotel",
+        "address": "Lindengracht 251, Amsterdam, 1015 HK, Netherlands",
+        "maps_query": null
+      },
+      "events": [
+        {
+          "type": "lodging-checkout",
+          "time": "11:00",
+          "label": "Check out: Barfot Apartments",
+          "detail": "Checkout deadline: 11:00 AM",
+          "address": "37 Magnus Barfots gate, Bergen, 5015 Norway",
+          "maps_query": null,
+          "booked": true,
+          "note": null
+        },
+        {
+          "type": "flight",
+          "time": "14:10",
+          "label": "Flight: Bergen → Amsterdam Schiphol",
+          "detail": "KLM KL 1168 | Economy",
+          "address": null,
+          "maps_query": null,
+          "booked": true,
+          "note": null
+        },
+        {
+          "type": "lodging-checkin",
+          "time": "15:55",
+          "label": "Arrive Amsterdam — Check in: Linden Hotel",
+          "detail": "Check-in from 3:00 PM",
+          "address": "Lindengracht 251, Amsterdam, 1015 HK, Netherlands",
+          "maps_query": null,
+          "booked": true,
+          "note": null
+        }
+      ]
+    },
+    {
+      "date": "2026-06-07",
+      "label": "Amsterdam",
+      "city": "Amsterdam",
+      "lat": 52.3676,
+      "lng": 4.9041,
+      "lodging": {
+        "name": "Linden Hotel",
+        "address": "Lindengracht 251, Amsterdam, 1015 HK, Netherlands",
+        "maps_query": null
+      },
+      "events": [
+        {
+          "type": "activity",
+          "time": "12:15",
+          "label": "Anne Frank House",
+          "detail": "Entry time slot 12:15–12:30 PM",
+          "address": "Westermarkt 20, 1016 GV Amsterdam",
+          "maps_query": null,
+          "booked": true,
+          "note": "Have all 4 tickets ready on phone. No large bags or rolling luggage allowed."
+        },
+        {
+          "type": "activity",
+          "time": "19:00",
+          "label": "Pure Boats Canal Cruise — The Ultimate Canal Cruise",
+          "detail": "Boat: Pure Spirit | Meet at wooden dock, Keizersgracht 92H",
+          "address": null,
+          "maps_query": "Keizersgracht 92H Amsterdam",
+          "booked": true,
+          "note": "Arrive 5 minutes before departure"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-08",
+      "label": "Amsterdam → Krakow",
+      "city": "Amsterdam → Krakow",
+      "lat": 52.3676,
+      "lng": 4.9041,
+      "lodging": {
+        "name": "Canvas House Apartament Pastel",
+        "address": null,
+        "maps_query": "Canvas House Apartament Pastel Krakow"
+      },
+      "events": [
+        {
+          "type": "transfer",
+          "time": "05:00",
+          "label": "Transfer to Amsterdam Centraal",
+          "detail": "Arranged ground transfer",
+          "address": null,
+          "maps_query": "Amsterdam Centraal Station",
+          "booked": true,
+          "note": null
+        },
+        {
+          "type": "train",
+          "time": "06:00",
+          "label": "ICE 141: Amsterdam Centraal → Berlin Ostbahnhof",
+          "detail": "Deutsche Bahn | 1st Class | Car 28, Seats 12, 13, 15, 16",
+          "address": null,
+          "maps_query": null,
+          "booked": true,
+          "note": null
+        },
+        {
+          "type": "train",
+          "time": "13:00",
+          "label": "EC 57: Berlin Ostbahnhof → Krakow Glowny",
+          "detail": "1st Class | Car 272, Seats 73, 74, 75, 76",
+          "address": null,
+          "maps_query": null,
+          "booked": true,
+          "note": null
+        },
+        {
+          "type": "lodging-checkin",
+          "time": "20:02",
+          "label": "Arrive Krakow — Check in: Canvas House Apartament Pastel",
+          "detail": "Check-in from 3:00 PM",
+          "address": null,
+          "maps_query": "Canvas House Apartament Pastel Krakow",
+          "booked": true,
+          "note": "Late arrival ~8 PM — contact host in advance"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-09",
+      "label": "Krakow — Free Day",
+      "city": "Krakow",
+      "lat": 50.0647,
+      "lng": 19.9450,
+      "lodging": {
+        "name": "Canvas House Apartament Pastel",
+        "address": null,
+        "maps_query": "Canvas House Apartament Pastel Krakow"
+      },
+      "events": [
+        {
+          "type": "note",
+          "time": null,
+          "label": "Free day — explore Krakow",
+          "detail": null,
+          "address": null,
+          "maps_query": null,
+          "booked": true,
+          "note": null
+        }
+      ]
+    },
+    {
+      "date": "2026-06-10",
+      "label": "Auschwitz-Birkenau",
+      "city": "Krakow",
+      "lat": 50.0647,
+      "lng": 19.9450,
+      "lodging": {
+        "name": "Canvas House Apartament Pastel",
+        "address": null,
+        "maps_query": "Canvas House Apartament Pastel Krakow"
+      },
+      "events": [
+        {
+          "type": "activity",
+          "time": "09:30",
+          "label": "Auschwitz-Birkenau Memorial & Museum",
+          "detail": "Guided tour for individuals — English",
+          "address": null,
+          "maps_query": "Auschwitz-Birkenau Memorial and Museum",
+          "booked": true,
+          "note": "Each person must bring ID"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-11",
+      "label": "Krakow — Free Day",
+      "city": "Krakow",
+      "lat": 50.0647,
+      "lng": 19.9450,
+      "lodging": {
+        "name": "Canvas House Apartament Pastel",
+        "address": null,
+        "maps_query": "Canvas House Apartament Pastel Krakow"
+      },
+      "events": [
+        {
+          "type": "note",
+          "time": null,
+          "label": "Free day — explore Krakow",
+          "detail": null,
+          "address": null,
+          "maps_query": null,
+          "booked": true,
+          "note": null
+        }
+      ]
+    },
+    {
+      "date": "2026-06-12",
+      "label": "Wieliczka Salt Mine",
+      "city": "Krakow",
+      "lat": 50.0647,
+      "lng": 19.9450,
+      "lodging": {
+        "name": "Canvas House Apartament Pastel",
+        "address": null,
+        "maps_query": "Canvas House Apartament Pastel Krakow"
+      },
+      "events": [
+        {
+          "type": "activity",
+          "time": null,
+          "label": "Wieliczka Salt Mine",
+          "detail": null,
+          "address": null,
+          "maps_query": "Wieliczka Salt Mine",
+          "booked": false,
+          "note": null
+        }
+      ]
+    },
+    {
+      "date": "2026-06-13",
+      "label": "Schindler's Factory",
+      "city": "Krakow",
+      "lat": 50.0647,
+      "lng": 19.9450,
+      "lodging": {
+        "name": "Canvas House Apartament Pastel",
+        "address": null,
+        "maps_query": "Canvas House Apartament Pastel Krakow"
+      },
+      "events": [
+        {
+          "type": "activity",
+          "time": null,
+          "label": "Schindler's Factory",
+          "detail": null,
+          "address": null,
+          "maps_query": "Oskar Schindler's Enamel Factory Krakow",
+          "booked": false,
+          "note": null
+        }
+      ]
+    },
+    {
+      "date": "2026-06-14",
+      "label": "Depart Krakow → Home",
+      "city": "Krakow → Dallas",
+      "lat": 50.0647,
+      "lng": 19.9450,
+      "lodging": null,
+      "events": [
+        {
+          "type": "lodging-checkout",
+          "time": "07:30",
+          "label": "Check out: Canvas House Apartament Pastel",
+          "detail": "Checkout deadline: 11:00 AM — leave early for airport",
+          "address": null,
+          "maps_query": "Canvas House Apartament Pastel Krakow",
+          "booked": true,
+          "note": null
+        },
+        {
+          "type": "flight",
+          "time": "08:50",
+          "label": "Flight: Krakow → Helsinki",
+          "detail": "AA 9014 (operated by Finnair) | Economy | Seats 12A, 12B, 12C, 12D",
+          "address": null,
+          "maps_query": null,
+          "booked": true,
+          "note": null
+        },
+        {
+          "type": "flight",
+          "time": "12:35",
+          "label": "Flight: Helsinki → Dallas/Fort Worth",
+          "detail": "AA 9019 (operated by Finnair) | Economy | Seats 31A, 31B, 31C, 31D",
+          "address": null,
+          "maps_query": null,
+          "booked": true,
+          "note": null
+        }
+      ]
+    }
+  ]
+}

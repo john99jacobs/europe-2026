@@ -1,0 +1,75 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "trip.json",
+  "type": "object",
+  "required": ["trip", "days"],
+  "additionalProperties": false,
+  "properties": {
+    "trip": {
+      "type": "object",
+      "required": ["name", "travelers", "start_date", "end_date"],
+      "additionalProperties": false,
+      "properties": {
+        "name":       { "type": "string" },
+        "travelers":  { "type": "array", "items": { "type": "string" } },
+        "start_date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+        "end_date":   { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" }
+      }
+    },
+    "days": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["date", "label", "city", "lat", "lng", "lodging", "events"],
+        "additionalProperties": false,
+        "properties": {
+          "date":   { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+          "label":  { "type": "string" },
+          "city":   { "type": "string" },
+          "lat":    { "type": "number" },
+          "lng":    { "type": "number" },
+          "lodging": {
+            "oneOf": [
+              { "type": "null" },
+              {
+                "type": "object",
+                "required": ["name", "address", "maps_query"],
+                "additionalProperties": false,
+                "properties": {
+                  "name":       { "type": "string" },
+                  "address":    { "type": ["string", "null"] },
+                  "maps_query": { "type": ["string", "null"] }
+                }
+              }
+            ]
+          },
+          "events": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["type", "time", "label", "detail", "address", "maps_query", "booked", "note"],
+              "additionalProperties": false,
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "flight", "train", "bus", "boat", "activity",
+                    "lodging-checkin", "lodging-checkout", "transfer", "note"
+                  ]
+                },
+                "time":       { "type": ["string", "null"], "pattern": "^([01]\\d|2[0-3]):[0-5]\\d$" },
+                "label":      { "type": "string" },
+                "detail":     { "type": ["string", "null"] },
+                "address":    { "type": ["string", "null"] },
+                "maps_query": { "type": ["string", "null"] },
+                "booked":     { "type": "boolean" },
+                "note":       { "type": ["string", "null"] }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
