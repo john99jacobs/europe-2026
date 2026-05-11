@@ -73,8 +73,12 @@ function renderEvent(event) {
     : '';
   const mapHtml = renderMapLink(event.address, event.maps_query);
 
+  const iata = event.type === 'flight' ? extractFlightIata(event.detail) : null;
+  const flightAttr = iata ? ` data-flight-iata="${iata}"` : '';
+  const flightStatusHtml = iata ? `<span class="flight-status" hidden></span>` : '';
+
   return `
-    <div class="event${unbooked ? ' event--unbooked' : ''}">
+    <div class="event${unbooked ? ' event--unbooked' : ''}"${flightAttr}>
       <div class="event-row">
         ${timeHtml}
         <div class="event-body">
@@ -83,6 +87,7 @@ function renderEvent(event) {
             ${badgeHtml}
           </div>
           ${detailHtml}
+          ${flightStatusHtml}
           ${noteHtml}
           ${mapHtml}
         </div>
@@ -145,6 +150,7 @@ function renderTodayView(day, dayIndex, totalDays, nextDay) {
     ${tomorrowHtml}`;
 
   loadWeather(day.lat, day.lng);
+  loadFlightStatuses(day.events);
 }
 
 function renderCountdown() {

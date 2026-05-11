@@ -1,10 +1,11 @@
-const CACHE = 'europe-2026-v2';
+const CACHE = 'europe-2026-v3';
 const ASSETS = [
   '/europe-2026/',
   '/europe-2026/index.html',
   '/europe-2026/css/style.css',
   '/europe-2026/js/app.js',
   '/europe-2026/js/weather.js',
+  '/europe-2026/js/flights.js',
   '/europe-2026/trip.json',
   '/europe-2026/icons/icon-192.png',
   '/europe-2026/icons/icon-512.png',

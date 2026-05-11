@@ -385,6 +385,19 @@ a:hover { text-decoration: underline; }
   color: var(--color-text-secondary);
 }
 
+/* ── Flight status ── */
+.flight-status {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 100px;
+  margin-top: var(--space-2);
+}
+.flight-status--ok   { background: #D1FAE5; color: #065F46; }
+.flight-status--warn { background: #FEF3C7; color: #92400E; }
+.flight-status--bad  { background: #FEE2E2; color: #991B1B; }
+
 /* ── Loading state ── */
 .loading-state {
   text-align: center;
