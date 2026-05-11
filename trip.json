@@ -59,6 +59,16 @@
           "note": null
         },
         {
+          "type": "flight",
+          "time": "23:40",
+          "label": "Arrive Oslo Gardermoen (OSL)",
+          "detail": "AA 7067 (operated by British Airways) from London Heathrow",
+          "address": null,
+          "maps_query": null,
+          "booked": true,
+          "note": null
+        },
+        {
           "type": "lodging-checkin",
           "time": "23:40",
           "label": "Arrive Oslo (OSL) — Check in",
