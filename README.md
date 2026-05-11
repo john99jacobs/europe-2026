@@ -21,6 +21,18 @@ Plain HTML, CSS, and JavaScript. No framework, no build step. Hosted on GitHub P
 - Maps: Apple Maps on iOS, Google Maps everywhere else
 - Data: `trip.json` — single source of truth for all trip data
 
+## Install on iPhone
+
+1. Open **Safari** — Chrome and Firefox on iOS cannot install PWAs
+2. Go to [john99jacobs.github.io/europe-2026](https://john99jacobs.github.io/europe-2026)
+3. Tap the **Share** button (box with arrow, bottom toolbar)
+4. Scroll the share sheet and tap **Add to Home Screen**
+5. Tap **Add**
+
+The icon appears on your home screen. The app opens full-screen, and the full itinerary is available offline after the first load.
+
+> **After a trip data update:** force-quit the app (swipe up in App Switcher) and reopen. This ensures the service worker fetches the latest `trip.json` rather than serving a cached copy.
+
 ## Updating trip data
 
 All trip details live in `trip.json`. When something changes (new booking, time update, gate change):
