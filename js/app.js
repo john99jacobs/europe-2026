@@ -144,12 +144,14 @@ function renderTodayView(day, dayIndex, totalDays, nextDay) {
       <div class="day-city">${day.city}</div>
     </div>
     <div id="weather-widget" class="hidden mb-4"></div>
+    <div id="vocab-widget" class="hidden mb-4"></div>
     <div class="section-label">Today's Schedule</div>
     <div class="event-list">${eventsHtml}</div>
     ${lodgingHtml}
     ${tomorrowHtml}`;
 
   loadWeather(day.lat, day.lng);
+  loadVocab(day.lat, day.lng);
   loadFlightStatuses(day.events);
 }
 

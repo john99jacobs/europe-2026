@@ -309,6 +309,50 @@ a:hover { text-decoration: underline; }
 }
 .weather-meta strong { color: var(--color-text-primary); }
 
+/* ── Vocabulary widget ── */
+#vocab-widget.hidden { display: none; }
+.vocab-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 0 var(--space-4);
+}
+.vocab-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+.vocab-row:last-child { border-bottom: none; }
+.vocab-en {
+  font-size: 14px;
+  color: var(--color-text-secondary);
+}
+.vocab-btn {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-primary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-sans);
+  -webkit-tap-highlight-color: transparent;
+}
+.vocab-btn:active { background: var(--color-today-bg); }
+.vocab-local {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+.vocab-speaker { font-size: 13px; opacity: 0.5; }
+
 /* ── Countdown ── */
 .countdown-block {
   text-align: center;
