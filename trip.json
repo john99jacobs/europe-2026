@@ -380,7 +380,7 @@
     },
     {
       "date": "2026-06-09",
-      "label": "Krakow — Free Day",
+      "label": "Schindler's Factory",
       "city": "Krakow",
       "lat": 50.0647,
       "lng": 19.9450,
@@ -391,14 +391,14 @@
       },
       "events": [
         {
-          "type": "note",
-          "time": null,
-          "label": "Free day — explore Krakow",
-          "detail": null,
-          "address": null,
+          "type": "activity",
+          "time": "12:00",
+          "label": "Oskar Schindler's Enamel Factory — Guided Tour",
+          "detail": "English-language guided tour | Muzeum Krakowa",
+          "address": "ul. Lipowa 4, 30-702 Kraków",
           "maps_query": null,
           "booked": true,
-          "note": null
+          "note": "Bring photo ID — required for entry"
         }
       ]
     },
@@ -476,7 +476,7 @@
     },
     {
       "date": "2026-06-13",
-      "label": "Schindler's Factory",
+      "label": "Krakow — Free Day",
       "city": "Krakow",
       "lat": 50.0647,
       "lng": 19.9450,
@@ -487,13 +487,13 @@
       },
       "events": [
         {
-          "type": "activity",
+          "type": "note",
           "time": null,
-          "label": "Schindler's Factory",
+          "label": "Free day — explore Krakow",
           "detail": null,
           "address": null,
-          "maps_query": "Oskar Schindler's Enamel Factory Krakow",
-          "booked": false,
+          "maps_query": null,
+          "booked": true,
           "note": null
         }
       ]
