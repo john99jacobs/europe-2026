@@ -43,6 +43,16 @@ All trip details live in `trip.json`. When something changes (new booking, time 
 
 No HTML, CSS, or JavaScript needs to change for data updates.
 
+## Local development
+
+No build step — just serve the files from the repo root:
+
+```bash
+python3 -m http.server 8000
+```
+
+Then open `http://localhost:8000`. Use this instead of opening `index.html` directly (the service worker requires HTTP, not `file://`).
+
 ## CI
 
 A GitHub Actions workflow validates `trip.json` against `trip.schema.json` on every push.
