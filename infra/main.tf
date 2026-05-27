@@ -53,8 +53,8 @@ resource "aws_iam_role_policy_attachment" "flight_status_logs" {
 
 data "archive_file" "flight_status" {
   type        = "zip"
-  source_dir  = "${path.module}/lambda"
-  output_path = "${path.module}/lambda.zip"
+  source_file = "${path.module}/lambda/index.js"
+  output_path = "${path.module}/flight_status.zip"
 }
 
 resource "aws_lambda_function" "flight_status" {
@@ -117,4 +117,107 @@ resource "aws_apigatewayv2_stage" "flight_status" {
   api_id      = aws_apigatewayv2_api.flight_status.id
   name        = "$default"
   auto_deploy = true
+}
+
+# ── Claude proxy — CloudWatch log group ──────────────────────────────────────
+
+resource "aws_cloudwatch_log_group" "claude_proxy" {
+  name              = "/aws/lambda/europe-2026-claude-proxy"
+  retention_in_days = 30
+}
+
+# ── Claude proxy — IAM ────────────────────────────────────────────────────────
+
+resource "aws_iam_role" "claude_proxy" {
+  name = "europe-2026-claude-proxy-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Effect    = "Allow"
+      Principal = { Service = "lambda.amazonaws.com" }
+      Action    = "sts:AssumeRole"
+    }]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "claude_proxy_logs" {
+  role       = aws_iam_role.claude_proxy.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+}
+
+# ── Claude proxy — Lambda ─────────────────────────────────────────────────────
+
+data "archive_file" "claude_proxy" {
+  type        = "zip"
+  source_file = "${path.module}/lambda/claude.js"
+  output_path = "${path.module}/claude_proxy.zip"
+}
+
+resource "aws_lambda_function" "claude_proxy" {
+  function_name    = "europe-2026-claude-proxy"
+  role             = aws_iam_role.claude_proxy.arn
+  handler          = "claude.handler"
+  runtime          = "nodejs20.x"
+  filename         = data.archive_file.claude_proxy.output_path
+  source_code_hash = data.archive_file.claude_proxy.output_base64sha256
+  timeout          = 30
+
+  environment {
+    variables = {
+      ANTHROPIC_API_KEY = var.anthropic_api_key
+      CORS_ORIGIN       = var.cors_origin
+    }
+  }
+
+  depends_on = [
+    aws_iam_role_policy_attachment.claude_proxy_logs,
+    aws_cloudwatch_log_group.claude_proxy,
+  ]
+}
+
+resource "aws_lambda_permission" "allow_api_gateway_claude" {
+  statement_id  = "AllowAPIGatewayInvoke"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.claude_proxy.function_name
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "${aws_apigatewayv2_api.claude_proxy.execution_arn}/*/*"
+}
+
+# ── Claude proxy — API Gateway HTTP API ──────────────────────────────────────
+
+resource "aws_apigatewayv2_api" "claude_proxy" {
+  name          = "europe-2026-claude-proxy"
+  protocol_type = "HTTP"
+
+  cors_configuration {
+    allow_origins = [var.cors_origin]
+    allow_methods = ["POST"]
+    allow_headers = ["content-type"]
+    max_age       = 300
+  }
+}
+
+resource "aws_apigatewayv2_integration" "claude_proxy" {
+  api_id                 = aws_apigatewayv2_api.claude_proxy.id
+  integration_type       = "AWS_PROXY"
+  integration_uri        = aws_lambda_function.claude_proxy.invoke_arn
+  payload_format_version = "2.0"
+}
+
+resource "aws_apigatewayv2_route" "claude_proxy" {
+  api_id    = aws_apigatewayv2_api.claude_proxy.id
+  route_key = "POST /"
+  target    = "integrations/${aws_apigatewayv2_integration.claude_proxy.id}"
+}
+
+resource "aws_apigatewayv2_stage" "claude_proxy" {
+  api_id      = aws_apigatewayv2_api.claude_proxy.id
+  name        = "$default"
+  auto_deploy = true
+
+  default_route_settings {
+    throttling_burst_limit = 5
+    throttling_rate_limit  = 10
+  }
 }
