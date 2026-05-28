@@ -191,7 +191,7 @@ resource "aws_apigatewayv2_api" "claude_proxy" {
   protocol_type = "HTTP"
 
   cors_configuration {
-    allow_origins = [var.cors_origin]
+    allow_origins = [var.cors_origin, "http://localhost:8000"]
     allow_methods = ["POST"]
     allow_headers = ["content-type"]
     max_age       = 300

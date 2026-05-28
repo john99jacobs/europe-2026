@@ -1,4 +1,4 @@
-const CACHE = 'europe-2026-v7';
+const CACHE = 'europe-2026-v8';
 const ASSETS = [
   '/europe-2026/',
   '/europe-2026/index.html',
@@ -7,6 +7,7 @@ const ASSETS = [
   '/europe-2026/js/weather.js',
   '/europe-2026/js/flights.js',
   '/europe-2026/js/vocab.js',
+  '/europe-2026/js/assistant.js',
   '/europe-2026/trip.json',
   '/europe-2026/icons/icon-192.png',
   '/europe-2026/icons/icon-512.png',
