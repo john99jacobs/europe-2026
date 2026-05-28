@@ -18,7 +18,7 @@
           "type": "flight",
           "time": "22:59",
           "label": "Flight: DFW → London Heathrow",
-          "detail": "American Airlines AA 78 | Economy | Seats 33D, 33E, 33G, 33H",
+          "detail": "American Airlines AA 78 | Business",
           "address": null,
           "maps_query": null,
           "booked": true,
@@ -46,7 +46,7 @@
           "address": null,
           "maps_query": null,
           "booked": true,
-          "note": null
+          "note": "Terminal change required before AA 7067 — allow time for the transfer"
         },
         {
           "type": "flight",
