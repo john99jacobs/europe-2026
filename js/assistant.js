@@ -1,9 +1,27 @@
 'use strict';
 
 const CLAUDE_PROXY_URL = 'https://k3aria2qw4.execute-api.eu-central-1.amazonaws.com/';
+const HISTORY_KEY = 'europe-2026-chat-history';
 
 let conversationHistory = [];
 let isLoading = false;
+
+function saveHistory() {
+  try {
+    localStorage.setItem(HISTORY_KEY, JSON.stringify(conversationHistory));
+  } catch {}
+}
+
+function loadHistory() {
+  try {
+    const saved = localStorage.getItem(HISTORY_KEY);
+    if (!saved) return;
+    const history = JSON.parse(saved);
+    if (!Array.isArray(history)) return;
+    conversationHistory = history;
+    history.forEach(msg => appendMessage(msg.role, msg.content));
+  } catch {}
+}
 
 function escapeHtml(str) {
   return str
@@ -90,6 +108,7 @@ async function sendMessage() {
     const reply = data.content || 'Sorry, I could not get a response.';
     conversationHistory.push({ role: 'assistant', content: reply });
     appendMessage('assistant', reply);
+    saveHistory();
   } catch {
     hideTyping();
     conversationHistory.pop();
@@ -133,6 +152,8 @@ function initAssistant() {
   });
 
   input.addEventListener('input', () => autoResize(input));
+
+  loadHistory();
 
   // Shift panel up when iOS keyboard appears so the input stays visible
   if (window.visualViewport) {
