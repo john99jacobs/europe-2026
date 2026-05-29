@@ -18,7 +18,7 @@
           "type": "flight",
           "time": "22:59",
           "label": "Flight: DFW → London Heathrow",
-          "detail": "American Airlines AA 78 | Business",
+          "detail": "American Airlines AA 78 | Business | Seats 10D, 10G, 11G, 11D",
           "address": null,
           "maps_query": null,
           "booked": true,
@@ -159,12 +159,12 @@
         {
           "type": "activity",
           "time": "18:30",
-          "label": "Local Food & Concert at Flåm Fjord Farm",
-          "detail": null,
-          "address": null,
-          "maps_query": "Flåm Fjord Farm",
+          "label": "Dinner: Ægir Gastropub at Flåmsbrygga",
+          "detail": "Dinner reservation for 4 — celebrating Elizabeth's birthday",
+          "address": "A-Feltvegen 25, 5743 Flåm",
+          "maps_query": "Flåmsbrygga Flåm",
           "booked": true,
-          "note": null
+          "note": "Table held for 90 minutes. Will be released if more than 15 minutes late."
         },
         {
           "type": "lodging-checkin",
