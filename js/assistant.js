@@ -120,7 +120,21 @@ async function sendMessage() {
   }
 }
 
+function lockBodyScroll() {
+  const scrollY = window.scrollY;
+  document.body.style.top = `-${scrollY}px`;
+  document.body.classList.add('scroll-locked');
+}
+
+function unlockBodyScroll() {
+  const top = document.body.style.top;
+  document.body.classList.remove('scroll-locked');
+  document.body.style.top = '';
+  if (top) window.scrollTo(0, -parseInt(top, 10));
+}
+
 function openPanel() {
+  lockBodyScroll();
   document.getElementById('assistant-panel').classList.add('assistant-panel--open');
   document.getElementById('assistant-fab').setAttribute('aria-expanded', 'true');
   setTimeout(() => document.getElementById('assistant-input').focus(), 300);
@@ -130,18 +144,27 @@ function closePanel() {
   document.getElementById('assistant-panel').classList.remove('assistant-panel--open');
   document.getElementById('assistant-fab').setAttribute('aria-expanded', 'false');
   document.getElementById('assistant-input').blur();
+  unlockBodyScroll();
 }
 
 function initAssistant() {
   const fab = document.getElementById('assistant-fab');
   const input = document.getElementById('assistant-input');
+  const panel = document.getElementById('assistant-panel');
+
+  // Prevent panel touches from bubbling to the document-level pull-to-refresh
+  // listener. passive:true on touchstart/touchmove is fine — we aren't calling
+  // preventDefault, just stopping propagation.
+  panel.addEventListener('touchstart', e => e.stopPropagation(), { passive: true });
+  panel.addEventListener('touchmove',  e => e.stopPropagation(), { passive: true });
+  panel.addEventListener('touchend',   e => e.stopPropagation());
 
   fab.addEventListener('click', () => {
-    const panel = document.getElementById('assistant-panel');
     panel.classList.contains('assistant-panel--open') ? closePanel() : openPanel();
   });
 
   document.getElementById('assistant-close').addEventListener('click', closePanel);
+
   document.getElementById('assistant-send').addEventListener('click', sendMessage);
 
   input.addEventListener('keydown', e => {
