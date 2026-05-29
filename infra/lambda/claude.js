@@ -1,11 +1,13 @@
 'use strict';
 
 const TRIP_JSON_URL = 'https://john99jacobs.github.io/europe-2026/trip.json';
+const RATES_URL = 'https://open.er-api.com/v6/latest/USD';
 const MAX_MESSAGES = 20;
 const MAX_MESSAGE_LENGTH = 2000;
 
 // Cached at module level — reused across warm Lambda invocations
 let tripJsonCache = null;
+let ratesCache = null;
 
 async function getTripJson() {
   if (tripJsonCache) return tripJsonCache;
@@ -15,13 +17,35 @@ async function getTripJson() {
   return tripJsonCache;
 }
 
-function buildSystemPrompt(tripJson, today) {
+async function getRates() {
+  if (ratesCache) return ratesCache;
+  try {
+    const res = await fetch(RATES_URL);
+    if (!res.ok) throw new Error(`rates ${res.status}`);
+    const data = await res.json();
+    ratesCache = {
+      NOK: data.rates?.NOK,
+      EUR: data.rates?.EUR,
+      PLN: data.rates?.PLN,
+    };
+  } catch {
+    ratesCache = null;
+  }
+  return ratesCache;
+}
+
+function buildSystemPrompt(tripJson, today, rates) {
+  const ratesLine = rates
+    ? `Current exchange rates (live): 1 USD = ${rates.NOK?.toFixed(2)} NOK, 1 USD = ${rates.EUR?.toFixed(4)} EUR, 1 USD = ${rates.PLN?.toFixed(4)} PLN.`
+    : 'Live exchange rates are unavailable at the moment.';
+
   return `You are a travel assistant for the Jacobs family Europe 2026 trip. \
 Your sole purpose is to help the Jacobs family with questions about their trip \
 itinerary and general travel topics relevant to their destinations: Norway, \
 the Netherlands, and Poland.
 
 Today's date is ${today}.
+${ratesLine}
 
 The complete trip itinerary is provided below as JSON. Use it to answer questions \
 about flights, trains, hotels, activities, and logistics.
@@ -44,7 +68,10 @@ the same way as rule 2.
 4. Be concise and friendly. The family will often be reading on a phone.
 5. Write in plain text only. Do not use markdown formatting — no asterisks for bold, \
 no pound signs for headings, no dashes or hyphens for bullet points. Use line breaks \
-to separate ideas and numbered lists (1. 2. 3.) when listing multiple items.`;
+to separate ideas and numbered lists (1. 2. 3.) when listing multiple items.
+6. You may answer currency conversion questions between USD and NOK, EUR, or PLN \
+using the exchange rates provided above. For other currencies or financial topics, \
+redirect the same way as rule 2.`;
 }
 
 exports.handler = async (event) => {
@@ -90,9 +117,9 @@ exports.handler = async (event) => {
   }
 
   try {
-    const tripJson = await getTripJson();
+    const [tripJson, rates] = await Promise.all([getTripJson(), getRates()]);
     const today = new Date().toISOString().split('T')[0];
-    const systemPrompt = buildSystemPrompt(tripJson, today);
+    const systemPrompt = buildSystemPrompt(tripJson, today, rates);
 
     const res = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
