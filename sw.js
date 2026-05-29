@@ -1,4 +1,4 @@
-const CACHE = 'europe-2026-v12';
+const CACHE = 'europe-2026-v13';
 const ASSETS = [
   '/europe-2026/',
   '/europe-2026/index.html',

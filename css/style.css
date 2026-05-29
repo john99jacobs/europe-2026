@@ -559,13 +559,11 @@ a:hover { text-decoration: underline; }
 }
 
 /* Applied to body when assistant panel is open — prevents the main page
-   from scrolling or triggering pull-to-refresh behind the panel.
-   position: fixed is required for iOS Safari; top is set by JS to
-   preserve the scroll position so the page doesn't jump on close. */
+   from scrolling behind the panel. overflow: hidden is enough here because
+   stopPropagation on panel touches already blocks the PTR listener, and
+   overscroll-behavior: contain handles scroll chaining inside the panel. */
 body.scroll-locked {
   overflow: hidden;
-  position: fixed;
-  width: 100%;
 }
 
 .assistant-msg {

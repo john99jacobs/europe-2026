@@ -121,16 +121,11 @@ async function sendMessage() {
 }
 
 function lockBodyScroll() {
-  const scrollY = window.scrollY;
-  document.body.style.top = `-${scrollY}px`;
   document.body.classList.add('scroll-locked');
 }
 
 function unlockBodyScroll() {
-  const top = document.body.style.top;
   document.body.classList.remove('scroll-locked');
-  document.body.style.top = '';
-  if (top) window.scrollTo(0, -parseInt(top, 10));
 }
 
 function openPanel() {
