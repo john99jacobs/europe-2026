@@ -52,7 +52,7 @@
           "type": "flight",
           "time": "20:30",
           "label": "Flight: London Heathrow → Oslo",
-          "detail": "AA 7067 (operated by British Airways) | Economy | Seats 11C, 11D, 11E, 11F",
+          "detail": "AA 7067 / BA 784 (operated by British Airways) | Economy | Seats 7C, 7D, 7E, 7F",
           "address": null,
           "maps_query": null,
           "booked": true,
