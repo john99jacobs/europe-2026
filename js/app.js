@@ -157,7 +157,7 @@ function renderTodayView(day, dayIndex, totalDays, nextDay) {
 
 function renderCountdown() {
   const start = new Date(tripData.trip.start_date + 'T00:00:00');
-  const now = new Date();
+  const now = new Date(todayStr() + 'T00:00:00');
   const diff = Math.ceil((start - now) / 86400000);
   document.getElementById('view-today').innerHTML = `
     <div class="countdown-block">
