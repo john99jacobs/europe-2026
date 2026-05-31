@@ -428,30 +428,6 @@
     },
     {
       "date": "2026-06-11",
-      "label": "Krakow — Free Day",
-      "city": "Krakow",
-      "lat": 50.0647,
-      "lng": 19.9450,
-      "lodging": {
-        "name": "Canvas House Apartament Pastel",
-        "address": null,
-        "maps_query": "Canvas House Apartament Pastel Krakow"
-      },
-      "events": [
-        {
-          "type": "note",
-          "time": null,
-          "label": "Free day — explore Krakow",
-          "detail": null,
-          "address": null,
-          "maps_query": null,
-          "booked": true,
-          "note": null
-        }
-      ]
-    },
-    {
-      "date": "2026-06-12",
       "label": "Wieliczka Salt Mine",
       "city": "Krakow",
       "lat": 50.0647,
@@ -469,6 +445,30 @@
           "detail": null,
           "address": null,
           "maps_query": "Wieliczka Salt Mine",
+          "booked": false,
+          "note": null
+        }
+      ]
+    },
+    {
+      "date": "2026-06-12",
+      "label": "Visit Family in Pcim",
+      "city": "Krakow",
+      "lat": 50.0647,
+      "lng": 19.9450,
+      "lodging": {
+        "name": "Canvas House Apartament Pastel",
+        "address": null,
+        "maps_query": "Canvas House Apartament Pastel Krakow"
+      },
+      "events": [
+        {
+          "type": "activity",
+          "time": null,
+          "label": "Visit Family in Pcim",
+          "detail": null,
+          "address": null,
+          "maps_query": "Pcim, Poland",
           "booked": false,
           "note": null
         }
