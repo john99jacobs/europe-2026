@@ -34,7 +34,7 @@
       "lng": -0.1278,
       "lodging": {
         "name": "Dinbnb Apartments Grunerlokka — Penthouse Dream",
-        "address": null,
+        "address": "Kirkegårdsgata 1, 0558 Oslo, Norway",
         "maps_query": "Dinbnb Apartments Grunerlokka Oslo"
       },
       "events": [
@@ -73,10 +73,10 @@
           "time": "23:40",
           "label": "Arrive Oslo (OSL) — Check in",
           "detail": "Dinbnb Apartments Grunerlokka — Penthouse Dream",
-          "address": null,
+          "address": "Kirkegårdsgata 1, 0558 Oslo, Norway",
           "maps_query": "Dinbnb Apartments Grunerlokka Oslo",
           "booked": true,
-          "note": "Address provided by host in Vrbo app"
+          "note": null
         }
       ]
     },
@@ -88,7 +88,7 @@
       "lng": 10.7522,
       "lodging": {
         "name": "Dinbnb Apartments Grunerlokka — Penthouse Dream",
-        "address": null,
+        "address": "Kirkegårdsgata 1, 0558 Oslo, Norway",
         "maps_query": "Dinbnb Apartments Grunerlokka Oslo"
       },
       "events": [
