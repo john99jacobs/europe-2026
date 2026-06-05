@@ -270,9 +270,9 @@
         },
         {
           "type": "flight",
-          "time": "14:10",
+          "time": "10:45",
           "label": "Flight: Bergen → Amsterdam Schiphol",
-          "detail": "KLM KL 1168 | Economy",
+          "detail": "KLM KL 1164 | Economy Comfort | Seats 4A, 4B, 5A, 5B",
           "address": null,
           "maps_query": null,
           "booked": true,
@@ -280,7 +280,7 @@
         },
         {
           "type": "lodging-checkin",
-          "time": "15:55",
+          "time": "12:30",
           "label": "Arrive Amsterdam — Check in: Linden Hotel",
           "detail": "Check-in from 3:00 PM",
           "address": "Lindengracht 251, Amsterdam, 1015 HK, Netherlands",
